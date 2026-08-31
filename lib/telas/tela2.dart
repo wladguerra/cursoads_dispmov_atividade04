@@ -8,23 +8,21 @@ class Tela2Screen extends StatefulWidget {
 }
 
 class _Tela1ScreenState extends State<Tela2Screen> {
-  final _controladorBase = TextEditingController();
-  final _controladorAltura = TextEditingController();
+  final _controladorLado = TextEditingController();
 
   String _resultado = '';
 
   void _calcularArea() {
-    final lado1 = double.tryParse(_controladorBase.text);
-    final lado2 = double.tryParse(_controladorAltura.text);
+    final lado = double.tryParse(_controladorLado.text);
 
     setState(() {
-      if (lado1 == null || lado2 == null) {
+      if (lado == null) {
         _resultado = 'Digite valores válidos';
-      } else if (lado1 <= 0 || lado2 <= 0) {
+      } else if (lado <= 0) {
         _resultado =
             'Número inválido, insira um número real maior que zero.';
       } else {
-        final area = (lado1 * lado2);
+        final area = (lado * lado);
         _resultado = 'Área do quadrado: $area';
       }
     });
@@ -56,7 +54,7 @@ class _Tela1ScreenState extends State<Tela2Screen> {
               const SizedBox(height: 10),
 
               const Text(
-                'Área = 1° Lado × 2° Lado',
+                'Área = Lado²',
                 textAlign: TextAlign.center,
               ),
 
@@ -65,24 +63,10 @@ class _Tela1ScreenState extends State<Tela2Screen> {
               SizedBox(
                 width: 200,
                 child: TextField(
-                  controller: _controladorBase,
+                  controller: _controladorLado,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
-                    labelText: '1° lado',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 15),
-
-              SizedBox(
-                width: 200,
-                child: TextField(
-                  controller: _controladorAltura,
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    labelText: '2° lado',
+                    labelText: 'Lado',
                     border: OutlineInputBorder(),
                   ),
                 ),
